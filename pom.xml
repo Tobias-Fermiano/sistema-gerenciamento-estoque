@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.project</groupId>
-    <artifactId>sistema-gerenciamento-inventario</artifactId>
+    <artifactId>sistema-gerenciamento-estoque</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>sistema-gerenciamento-inventario</name>
 
@@ -15,6 +15,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -61,7 +66,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                br.com.project.sistemagerenciamentoinventario/br.com.project.sistemagerenciamentoinventario.HelloApplication
+                                br.com.project.sistemagerenciamentoinventario/br.com.project.sistemagerenciamentoestoque.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
