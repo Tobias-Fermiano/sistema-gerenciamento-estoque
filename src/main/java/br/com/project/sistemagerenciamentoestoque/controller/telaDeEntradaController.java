@@ -30,7 +30,6 @@ public class telaDeEntradaController implements Initializable {
 
     private Scene scene;
     private Stage stage;
-    private Parent root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -42,26 +41,29 @@ public class telaDeEntradaController implements Initializable {
     }
 
     @FXML
-    public void HyperlinkDesenvolvido() throws URISyntaxException, IOException {
+    public void hyperlinkDesenvolvido() throws URISyntaxException, IOException {
         String url = "https://github.com/gustavorieg";
         Desktop.getDesktop().browse(new URI(url));
     }
 
     @FXML
-    public void EntrarTelaPrincipal(ActionEvent event) throws IOException {
+    protected void entrarTelaPrincipal(ActionEvent event) throws IOException {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml").toURI().toURL();
-        this.root = FXMLLoader.load(url);
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
         scene = new Scene(root);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setTitle("Tela de Clientes");
         stage.setScene(scene);
+        stage.setTitle("Gerenciamento de Estoque");
+        stage.setScene(scene);
+
+        telaPrincipalController controller = loader.getController();
+        controller.setStage(this.stage);
+
         stage.show();
     }
 
-
-
     @FXML
-    public void SairTelaDeEntrada(){
+    public void sairTelaDeEntrada(){
         this.stage.close();
     }
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="471.0" prefWidth="716.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.produtosTelaPrinpalController">
+   <children>
+      <Pane prefHeight="74.0" prefWidth="716.0">
+         <children>
+            <TextField fx:id="txtFieldValor" layoutX="539.0" layoutY="42.0" prefHeight="25.0" prefWidth="163.0" />
+            <Label layoutX="11.0" layoutY="10.0" text="DESCRIÇÃO PRODUTO*">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="540.0" layoutY="13.0" text="VALOR*">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtFieldDescricao" layoutX="11.0" layoutY="40.0" prefHeight="28.0" prefWidth="439.0" />
+         </children>
+      </Pane>
+      <Pane layoutX="21.0" layoutY="81.0" prefHeight="60.0" prefWidth="667.0" style="-fx-background-color: gray;">
+         <children>
+            <Button fx:id="btnSalvarProdutos" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#inserirProduto" prefHeight="48.0" prefWidth="304.0" text="SALVAR PRODUTO">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../arquivos/icons/salvar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="325.0" layoutY="6.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="184.0" text="ALTERAR">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../arquivos/icons/alterar.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="519.0" layoutY="6.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="139.0" text="EXCLUIR">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../arquivos/icons/excluir.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <ScrollPane layoutY="147.0" prefHeight="284.0" prefWidth="716.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="713.0">
+               <children>
+                  <TableView fx:id="tblViewProdutos" prefHeight="282.0" prefWidth="716.0">
+                    <columns>
+                      <TableColumn fx:id="tblColumnCodigo" prefWidth="87.2000122666359" text="CÓDIGO" />
+                      <TableColumn fx:id="tblColumnDescricao" prefWidth="547.0" text="DESCRIÇÃO DO PRODUTO" />
+                        <TableColumn fx:id="tblColumnValor" text="VALOR" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button fx:id="btnVoltarTelaPrincipal" layoutX="9.0" layoutY="436.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="28.0" prefWidth="67.0" text="VOLTAR" />
+   </children>
+</AnchorPane>

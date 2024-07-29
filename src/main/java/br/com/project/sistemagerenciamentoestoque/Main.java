@@ -13,6 +13,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 public class Main extends Application {
+
     @Override
     public void start(Stage stage) throws IOException, URISyntaxException {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaDeEntrada.fxml").toURI().toURL();
@@ -29,7 +30,6 @@ public class Main extends Application {
         controller.setStage(stage);
 
         stage.show();
-
     }
 
     public static void main(String[] args) {
