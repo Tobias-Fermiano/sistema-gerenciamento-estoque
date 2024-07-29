@@ -44,6 +44,11 @@ public class produtosTelaPrinpalController implements Initializable {
     private TextField txtFieldDescricao;
     @FXML
     private TextField txtFieldValor;
+    @FXML
+    private Button btnRemoverProduto;
+    @FXML
+    private Button btnEditarProduto;
+
 
     private List<Produtos> listProdutos;
     private ObservableList<Produtos> observableListProdutos;
@@ -105,5 +110,23 @@ public class produtosTelaPrinpalController implements Initializable {
         controller.setStage(this.stage);
 
         stage.show();
+    }
+
+    public void removerProduto() throws SQLException {
+        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
+        if (produtos != null) {
+            produtosDAO.removerProduto(produtos);
+            carregarTableViewProdutos();
+        } else {
+            System.out.println("Ta errado amigão");
+        }
+    }
+
+    public void editarProduto() throws SQLException {
+        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
+        if (produtos != null) {
+            produtos.setDescricao(txtFieldDescricao.getText());
+            produtos.setValor(Double.parseDouble(txtFieldValor.getText()));
+        }
     }
 }

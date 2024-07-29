@@ -37,7 +37,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="325.0" layoutY="6.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="184.0" text="ALTERAR">
+            <Button fx:id="btnEditarProduto" layoutX="325.0" layoutY="6.0" mnemonicParsing="false" onAction="#editarProduto" prefHeight="48.0" prefWidth="184.0" text="ALTERAR">
                <font>
                   <Font size="18.0" />
                </font>
@@ -49,7 +49,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="519.0" layoutY="6.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="139.0" text="EXCLUIR">
+            <Button fx:id="btnRemoverProdutos" layoutX="519.0" layoutY="6.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="48.0" prefWidth="139.0" text="EXCLUIR">
                <font>
                   <Font size="18.0" />
                </font>
@@ -70,8 +70,8 @@
                   <TableView fx:id="tblViewProdutos" prefHeight="282.0" prefWidth="716.0">
                     <columns>
                       <TableColumn fx:id="tblColumnCodigo" prefWidth="87.2000122666359" text="CÓDIGO" />
-                      <TableColumn fx:id="tblColumnDescricao" prefWidth="547.0" text="DESCRIÇÃO DO PRODUTO" />
-                        <TableColumn fx:id="tblColumnValor" text="VALOR" />
+                      <TableColumn fx:id="tblColumnDescricao" prefWidth="506.2000045776367" text="DESCRIÇÃO DO PRODUTO" />
+                        <TableColumn fx:id="tblColumnValor" prefWidth="119.5999755859375" text="VALOR" />
                     </columns>
                   </TableView>
                </children>

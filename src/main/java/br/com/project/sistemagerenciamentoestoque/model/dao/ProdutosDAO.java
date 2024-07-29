@@ -86,4 +86,16 @@ public class ProdutosDAO {
         return produto;
     }
 
+    public boolean removerProduto(Produtos produto){
+        String sql = "DELETE from produtos where id = (?)";
+        try{
+            PreparedStatement smtm = conn.prepareStatement(sql);
+            smtm.setInt(1, produto.getId());
+            smtm.execute();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+    }
 }
