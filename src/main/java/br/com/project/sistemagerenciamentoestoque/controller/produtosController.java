@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -26,7 +23,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class produtosTelaPrinpalController implements Initializable {
+public class produtosController implements Initializable {
 
     @FXML
     private TableView<Produtos> tblViewProdutos;
@@ -63,7 +60,7 @@ public class produtosTelaPrinpalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         produtosDAO.setConnection(connection);
-        try{
+        try {
             carregarTableViewProdutos();
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -83,14 +80,47 @@ public class produtosTelaPrinpalController implements Initializable {
 
     @FXML
     public void inserirProduto() throws SQLException {
-        Produtos produto = new Produtos();
-        produto.setDescricao(txtFieldDescricao.getText());
-        produto.setValor(Double.parseDouble(txtFieldValor.getText()));
-        produtosDAO.inserir(produto);
 
-        Produtos produtos = produtosDAO.findProduto();
+        String descricao = txtFieldDescricao.getText();
+        String valor = txtFieldValor.getText();
+        if (descricao.isEmpty() && valor.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, preencha todos os campos antes de inserir!");
+            alert.show();
+        } else {
+            Produtos produto = new Produtos();
+            produto.setDescricao(descricao);
+            produto.setValor(Double.parseDouble(valor));
+            produtosDAO.inserir(produto);
+        }
+        carregarTableViewProdutos();
+    }
 
-        observableListProdutos.add(produtos);
+    public void removerProduto() throws SQLException {
+        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
+        if (produtos != null) {
+            produtosDAO.removerProduto(produtos);
+            carregarTableViewProdutos();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, escolha um prduto na Tabela para conseguir remover!");
+            alert.show();
+        }
+    }
+
+    public void editarProdutoDialog() throws SQLException, IOException {
+        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
+
+        if (produtos != null) {
+            if(showCadastrosClientesDialog(produtos)){
+                produtosDAO.editarProduto(produtos);
+                carregarTableViewProdutos();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Selecione um produto para alterar!");
+            alert.show();
+        }
     }
 
     public void setStage(Stage stage) {
@@ -112,21 +142,24 @@ public class produtosTelaPrinpalController implements Initializable {
         stage.show();
     }
 
-    public void removerProduto() throws SQLException {
-        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
-        if (produtos != null) {
-            produtosDAO.removerProduto(produtos);
-            carregarTableViewProdutos();
-        } else {
-            System.out.println("Ta errado amigão");
-        }
+    @FXML
+    public boolean showCadastrosClientesDialog(Produtos produto) throws IOException {
+        Stage newStage = new Stage();
+        URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/produtosDialog.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        Scene newScene = new Scene(root);
+        newStage.setScene(newScene);
+        newStage.setTitle("Editar produto");
+        newStage.setScene(newScene);
+
+        produtosDialogController controller = loader.getController();
+        controller.setStage(newStage);
+        controller.setProduto(produto);
+
+        newStage.showAndWait();
+
+        return true;
     }
 
-    public void editarProduto() throws SQLException {
-        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
-        if (produtos != null) {
-            produtos.setDescricao(txtFieldDescricao.getText());
-            produtos.setValor(Double.parseDouble(txtFieldValor.getText()));
-        }
-    }
 }

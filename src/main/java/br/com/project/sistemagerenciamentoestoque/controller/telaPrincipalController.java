@@ -1,6 +1,5 @@
 package br.com.project.sistemagerenciamentoestoque.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,11 +47,10 @@ public class telaPrincipalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         scene = new Scene(root);
-        stage.setScene(scene);
         stage.setTitle("Produtos");
         stage.setScene(scene);
 
-        produtosTelaPrinpalController controller = loader.getController();
+        produtosController controller = loader.getController();
         controller.setStage(this.stage);
 
         stage.show();

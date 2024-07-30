@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="116.0" prefWidth="282.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.produtosDialogController">
+   <children>
+      <Pane layoutY="-4.0" prefHeight="116.0" prefWidth="283.0">
+         <children>
+            <Button fx:id="btnProdutoDialogEnviar" layoutX="155.0" layoutY="80.0" mnemonicParsing="false" onAction="#produtosDialogEnviar" text="Enviar" />
+            <Button fx:id="btnProdutoDialogCancelar" layoutX="213.0" layoutY="80.0" mnemonicParsing="false" onAction="#produtosDialogCancelar" prefHeight="25.0" prefWidth="62.0" text="Cancelar" />
+            <TextField fx:id="txtFieldProdutoDialogValor" layoutX="14.0" layoutY="80.0" prefHeight="25.0" prefWidth="130.0" />
+            <TextField fx:id="txtFieldProdutoDialogDescricao" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="261.0" />
+            <Label layoutX="14.0" layoutY="14.0" text="Descrição do produto" />
+            <Label layoutX="14.0" layoutY="65.0" text="Valor" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

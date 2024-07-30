@@ -54,38 +54,6 @@ public class ProdutosDAO {
         return retorno;
     }
 
-    public Produtos findProduto() throws SQLException {
-        String sql = "SELECT * FROM produtos ORDER BY id DESC LIMIT 1;";
-        Produtos produto = null;
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            if (rs.next()) {
-                int id = rs.getInt("id");
-                sql = "SELECT * FROM produtos WHERE id = ?";
-                try (PreparedStatement stmt2 = conn.prepareStatement(sql)) {
-                    stmt2.setInt(1, id);
-                    try (ResultSet rs2 = stmt2.executeQuery()) {
-                        if (rs2.next()) {
-                            produto = new Produtos();
-                            produto.setId(rs2.getInt("id"));
-                            produto.setDescricao(rs2.getString("descricao"));
-                            produto.setValor(rs2.getDouble("valor"));
-                        }
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);
-                    throw ex;
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutosDAO.class.getName()).log(Level.SEVERE, null, ex);
-            throw ex;
-        }
-
-        return produto;
-    }
-
     public boolean removerProduto(Produtos produto){
         String sql = "DELETE from produtos where id = (?)";
         try{
@@ -96,6 +64,20 @@ public class ProdutosDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
 
+        }
+    }
+
+    public boolean editarProduto(Produtos produto){
+        String sql = "UPDATE produtos SET descricao = ?, valor = ? WHERE id = ?";
+        try{
+            PreparedStatement smtm = conn.prepareStatement(sql);
+            smtm.setString(1, produto.getDescricao());
+            smtm.setDouble(2, produto.getValor());
+            smtm.setInt(3, produto.getId());
+            smtm.execute();
+            return true;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

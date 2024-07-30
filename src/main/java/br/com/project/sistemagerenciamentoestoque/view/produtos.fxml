@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="471.0" prefWidth="716.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.produtosTelaPrinpalController">
+<AnchorPane prefHeight="471.0" prefWidth="716.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.produtosController">
    <children>
       <Pane prefHeight="74.0" prefWidth="716.0">
          <children>
@@ -37,7 +37,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnEditarProduto" layoutX="325.0" layoutY="6.0" mnemonicParsing="false" onAction="#editarProduto" prefHeight="48.0" prefWidth="184.0" text="ALTERAR">
+            <Button fx:id="btnEditarProduto" layoutX="325.0" layoutY="6.0" mnemonicParsing="false" onAction="#editarProdutoDialog" prefHeight="48.0" prefWidth="184.0" text="ALTERAR">
                <font>
                   <Font size="18.0" />
                </font>
@@ -65,13 +65,13 @@
       </Pane>
       <ScrollPane layoutY="147.0" prefHeight="284.0" prefWidth="716.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="713.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="709.0">
                <children>
-                  <TableView fx:id="tblViewProdutos" prefHeight="282.0" prefWidth="716.0">
+                  <TableView fx:id="tblViewProdutos" prefHeight="278.0" prefWidth="716.0">
                     <columns>
                       <TableColumn fx:id="tblColumnCodigo" prefWidth="87.2000122666359" text="CÓDIGO" />
-                      <TableColumn fx:id="tblColumnDescricao" prefWidth="506.2000045776367" text="DESCRIÇÃO DO PRODUTO" />
-                        <TableColumn fx:id="tblColumnValor" prefWidth="119.5999755859375" text="VALOR" />
+                      <TableColumn fx:id="tblColumnDescricao" prefWidth="489.4000015258789" text="DESCRIÇÃO DO PRODUTO" />
+                        <TableColumn fx:id="tblColumnValor" prefWidth="133.20001220703125" text="VALOR" />
                     </columns>
                   </TableView>
                </children>
