@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="594.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.estoqueController">
+   <children>
+      <Pane prefHeight="148.0" prefWidth="656.0">
+         <children>
+            <Button layoutX="10.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="238.0" text="Escolher produto" />
+            <TextField disable="true" layoutX="10.0" layoutY="64.0" prefHeight="25.0" prefWidth="76.0" />
+            <Label layoutX="10.0" layoutY="45.0" text="Código" />
+            <Label layoutX="10.0" layoutY="90.0" text="Descrição" />
+            <TextField disable="true" layoutX="10.0" layoutY="107.0" prefHeight="25.0" prefWidth="238.0" />
+            <Label layoutX="99.0" layoutY="46.0" text="Valor Unit." />
+            <TextField disable="true" layoutX="99.0" layoutY="64.0" />
+         </children>
+      </Pane>
+      <ScrollPane layoutY="148.0" prefHeight="445.0" prefWidth="656.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="444.0" prefWidth="654.0">
+               <children>
+                  <TableView fx:id="tableViewEstoque" layoutY="-2.0" prefHeight="446.0" prefWidth="656.0">
+                    <columns>
+                      <TableColumn fx:id="colCodEstoque" prefWidth="75.0" text="Código" />
+                      <TableColumn fx:id="colDescricaoEstoque" prefWidth="326.3999786376953" text="Descrição" />
+                        <TableColumn fx:id="colQuantidadeEstoque" prefWidth="84.800048828125" text="Quantidade" />
+                        <TableColumn fx:id="colValorTotalEstoque" prefWidth="84.0" text="Valor Total" />
+                        <TableColumn fx:id="colValorUnitEstoque" prefWidth="92.0" text="Valor Unit." />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

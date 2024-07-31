@@ -42,7 +42,7 @@ public class telaPrincipalController implements Initializable {
     }
 
     @FXML
-    public void mudarTelaProdutos() throws IOException {
+    public void telaProdutos() throws IOException {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/produtos.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
@@ -56,5 +56,19 @@ public class telaPrincipalController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    public void telaEstoque() throws IOException {
+        URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/estoque.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        scene = new Scene(root);
+        stage.setTitle("Estoque");
+        stage.setScene(scene);
+
+        //produtosController controller = loader.getController();
+        //controller.setStage(this.stage);
+
+        stage.show();
+    }
 
 }
