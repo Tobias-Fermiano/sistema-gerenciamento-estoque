@@ -46,14 +46,18 @@ public class telaPrincipalController implements Initializable {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/produtos.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+
         scene = new Scene(root);
-        stage.setTitle("Produtos");
-        stage.setScene(scene);
+        Stage newStage = new Stage();
+        newStage.setTitle("Produtos");
+        newStage.setResizable(false);
+        newStage.setScene(scene);
 
         produtosController controller = loader.getController();
-        controller.setStage(this.stage);
+        controller.setStage(newStage);
 
-        stage.show();
+        newStage.show();
+        stage.close();
     }
 
     @FXML
@@ -62,13 +66,16 @@ public class telaPrincipalController implements Initializable {
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
         scene = new Scene(root);
-        stage.setTitle("Estoque");
-        stage.setScene(scene);
+        Stage newStage = new Stage();
+        newStage.setTitle("Estoque");
+        newStage.setResizable(false);
+        newStage.setScene(scene);
 
-        //produtosController controller = loader.getController();
-        //controller.setStage(this.stage);
+        estoqueController controller = loader.getController();
+        controller.setStage(newStage);
 
-        stage.show();
+        newStage.show();
+        stage.close();
     }
 
 }

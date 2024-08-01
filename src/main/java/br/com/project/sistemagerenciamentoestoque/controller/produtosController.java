@@ -148,10 +148,12 @@ public class produtosController implements Initializable {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/produtosDialog.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        Scene newScene = new Scene(root);
-        newStage.setScene(newScene);
+
+        Scene scene = new Scene(root);
+
+        newStage.setScene(scene);
         newStage.setTitle("Editar produto");
-        newStage.setScene(newScene);
+        newStage.setScene(scene);
 
         produtosDialogController controller = loader.getController();
         controller.setStage(newStage);

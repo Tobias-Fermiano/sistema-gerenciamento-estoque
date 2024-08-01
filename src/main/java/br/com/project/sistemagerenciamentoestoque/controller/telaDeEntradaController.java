@@ -51,15 +51,19 @@ public class telaDeEntradaController implements Initializable {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setTitle("Gerenciamento de Estoque");
-        stage.setScene(scene);
+        Scene scene = new Scene(root);
+
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.setTitle("Gerenciamento de Estoque");
+        newStage.setResizable(false);
+        newStage.setScene(scene);
 
         telaPrincipalController controller = loader.getController();
-        controller.setStage(this.stage);
+        controller.setStage(newStage);
 
-        stage.show();
+        newStage.show();
+        stage.close();
     }
 
     @FXML
