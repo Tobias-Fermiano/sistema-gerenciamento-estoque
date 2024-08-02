@@ -72,6 +72,20 @@ public class estoqueController implements Initializable {
         System.out.println(movimento);
     }
 
+    public void escolherProduto() throws IOException {
+        URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/estoqueProdutosDialog.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage newStage = new Stage();
+        newStage.setTitle("Selecionar Produto");
+        newStage.setResizable(false);
+        newStage.setScene(scene);
+
+        newStage.show();
+    }
+
     public void voltarTelaPrincipal() throws IOException {
         URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml").toURI().toURL();
         FXMLLoader loader = new FXMLLoader(url);

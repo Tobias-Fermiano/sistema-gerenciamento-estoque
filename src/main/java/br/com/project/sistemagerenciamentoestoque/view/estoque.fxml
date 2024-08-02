@@ -17,13 +17,13 @@
    <children>
       <Pane prefHeight="148.0" prefWidth="656.0">
          <children>
-            <Button layoutX="10.0" layoutY="11.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="238.0" text="Escolher produto" />
-            <TextField disable="true" layoutX="10.0" layoutY="59.0" prefHeight="25.0" prefWidth="76.0" />
+            <Button fx:id="btnEscolherProduto" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" onAction="#escolherProduto" prefHeight="25.0" prefWidth="238.0" text="Escolher produto" />
+            <TextField fx:id="txtFieldCodigo" disable="true" layoutX="10.0" layoutY="59.0" prefHeight="25.0" prefWidth="76.0" />
             <Label layoutX="10.0" layoutY="40.0" text="Código" />
             <Label layoutX="10.0" layoutY="85.0" text="Descrição" />
-            <TextField disable="true" layoutX="10.0" layoutY="102.0" prefHeight="25.0" prefWidth="238.0" />
+            <TextField fx:id="txtFieldDescricao" disable="true" layoutX="10.0" layoutY="102.0" prefHeight="25.0" prefWidth="238.0" />
             <Label layoutX="99.0" layoutY="41.0" text="Valor Unit." />
-            <TextField disable="true" layoutX="99.0" layoutY="59.0" />
+            <TextField fx:id="txtFieldValorUnit" disable="true" layoutX="99.0" layoutY="59.0" />
             <ChoiceBox fx:id="choiceBoxMovimento" layoutX="265.0" layoutY="26.0" prefHeight="30.0" prefWidth="150.0" />
             <Label layoutX="265.0" layoutY="58.0" text="Quantidade" />
             <TextField layoutX="265.0" layoutY="74.0" />
