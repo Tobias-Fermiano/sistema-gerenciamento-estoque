@@ -80,4 +80,26 @@ public class ProdutosDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Produtos> likeProduto(String descricao){
+        String sql = "SELECT * FROM produtos WHERE descricao LIKE ?";
+        descricao = "%"+descricao+"%";
+        Produtos produto = new Produtos();
+        List<Produtos> retorno = new ArrayList<>();
+        try{
+            PreparedStatement smtm = conn.prepareStatement(sql);
+            smtm.setString(1, descricao);
+            ResultSet rs = smtm.executeQuery();
+            while(rs.next()){
+                Produtos produtos = new Produtos();
+                produtos.setId(rs.getInt("id"));
+                produtos.setDescricao(rs.getString("descricao"));
+                produtos.setValor(rs.getDouble("valor"));
+                retorno.add(produtos);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return retorno;
+    }
 }

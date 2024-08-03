@@ -1,6 +1,7 @@
 package br.com.project.sistemagerenciamentoestoque.controller;
 
 import br.com.project.sistemagerenciamentoestoque.model.domain.Estoque;
+import br.com.project.sistemagerenciamentoestoque.model.domain.Produtos;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,8 @@ public class estoqueController implements Initializable {
     private TextField txtFieldCodigo;
     @FXML
     private TextField txtFieldValorUnit;
+    @FXML
+    private TextField txtFeildQtdProduto;
     @FXML
     private Button btnEscolherProduto;
     @FXML
@@ -83,7 +86,17 @@ public class estoqueController implements Initializable {
         newStage.setResizable(false);
         newStage.setScene(scene);
 
-        newStage.show();
+        estoqueProdutosDialogController controller = loader.getController();
+        controller.setStage(newStage);
+
+        newStage.showAndWait();
+
+        Produtos produto = controller.getProduto();
+        if (produto != null){
+            txtFieldCodigo.setText(Integer.toString(produto.getId()));
+            txtFieldDescricao.setText(produto.getDescricao());
+            txtFieldValorUnit.setText(Double.toString(produto.getValor()));
+        }
     }
 
     public void voltarTelaPrincipal() throws IOException {
@@ -104,4 +117,15 @@ public class estoqueController implements Initializable {
         stage.close();
     }
 
+    public void limparTela(){
+        txtFieldCodigo.setText("");
+        txtFieldDescricao.setText("");
+        txtFieldValorUnit.setText("");
+        txtFeildQtdProduto.setText("");
+        choiceBoxMovimento.setValue("");
+    }
+
+    public void btnRecarregarTableView(){
+       //
+    }
 }
