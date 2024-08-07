@@ -68,17 +68,23 @@ public class estoqueController implements Initializable {
     private final EstoqueDAO estoqueDAO = new EstoqueDAO();
 
     private Stage stage;
+    private Produtos produto;
 
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+    public void setProduto(Produtos produto){
+        this.produto = produto;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        estoqueDAO.setConnection(connection);
         setarMovimentosChoiceBox();
-        //carregaTableViewEstoque();
+        carregaTableViewEstoque();
     }
 
+    @FXML
     public void carregaTableViewEstoque(){
         colCodEstoque.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDescricaoEstoque.setCellValueFactory(new PropertyValueFactory<>("descricao"));
@@ -102,7 +108,19 @@ public class estoqueController implements Initializable {
     @FXML
     public void estoqueInserir(){
         String movimento = choiceBoxMovimento.getValue();
-        System.out.println(movimento);
+        if (movimento != null && txtFieldDescricao.getText() != "" && txtFeildQtdProduto.getText() != "") {
+            if(movimento == "Entrada"){
+                movimento = "E";
+                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()));
+            } else{
+                movimento = "S";
+                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()));
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Por favor, preencha todos os campos antes de inserir!");
+            alert.show();
+        }
     }
 
     @FXML
@@ -124,6 +142,7 @@ public class estoqueController implements Initializable {
 
         Produtos produto = controller.getProduto();
         if (produto != null){
+            setProduto(produto);
             txtFieldCodigo.setText(Integer.toString(produto.getId()));
             txtFieldDescricao.setText(produto.getDescricao());
             txtFieldValorUnit.setText(Double.toString(produto.getValor()));

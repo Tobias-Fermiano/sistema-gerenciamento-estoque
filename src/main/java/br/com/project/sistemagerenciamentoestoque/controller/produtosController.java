@@ -80,7 +80,6 @@ public class produtosController implements Initializable {
 
     @FXML
     public void inserirProduto() throws SQLException {
-
         String descricao = txtFieldDescricao.getText();
         String valor = txtFieldValor.getText();
         if (descricao.isEmpty() && valor.isEmpty()) {
