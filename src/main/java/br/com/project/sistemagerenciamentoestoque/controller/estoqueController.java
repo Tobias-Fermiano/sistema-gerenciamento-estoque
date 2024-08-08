@@ -111,11 +111,13 @@ public class estoqueController implements Initializable {
         if (movimento != null && txtFieldDescricao.getText() != "" && txtFeildQtdProduto.getText() != "") {
             if(movimento == "Entrada"){
                 movimento = "E";
-                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()));
+                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()), movimento);
             } else{
                 movimento = "S";
-                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()));
+                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()), movimento);
             }
+
+            carregaTableViewEstoque();
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Por favor, preencha todos os campos antes de inserir!");

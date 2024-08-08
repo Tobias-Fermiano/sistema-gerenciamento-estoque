@@ -21,19 +21,52 @@ public class EstoqueDAO {
         this.conn = conn;
     }
 
-    public boolean inserir(Produtos Produto, int quantidade){
-        String sql = "INSERT INTO estoque(id_produto, quantidade, data) VALUES(?,?,?)";
-        Date dataAtual = Date.valueOf(LocalDate.now());
+    public boolean inserir(Produtos Produto, int quantidade, String movimento){
+        String findProdutoEstoque = "SELECT * FROM estoque WHERE id_produto = ?";
+        Produtos produto = new Produtos();
         try{
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, Produto.getId());
-            stmt.setInt(2, quantidade);
-            stmt.setDate(3, dataAtual);
-            stmt.execute();
-            return true;
-        }  catch (SQLException e) {
+            PreparedStatement stmtProdutoEstoque = conn.prepareStatement(findProdutoEstoque);
+            stmtProdutoEstoque.setInt(1, Produto.getId());
+            ResultSet rs = stmtProdutoEstoque.executeQuery();
+            if (movimento == "E"){
+                if (rs.next()){
+                    String updateEntrada = "UPDATE estoque SET quantidade = quantidade + ? WHERE id_produto = ?";
+                    try{
+                        PreparedStatement updateProdutoEstoque = conn.prepareStatement(updateEntrada);
+                        updateProdutoEstoque.setInt(1, quantidade);
+                        updateProdutoEstoque.setInt(2, Produto.getId());
+                        updateProdutoEstoque.execute();
+                    }  catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }else {
+                    String insertProdutoEstoque = "INSERT INTO estoque(id_produto, quantidade, data) VALUES(?,?,?)";
+                    Date dataAtual = Date.valueOf(LocalDate.now());
+                    try{
+                        PreparedStatement stmtInsertProdutoEstoque = conn.prepareStatement(insertProdutoEstoque);
+                        stmtInsertProdutoEstoque.setInt(1, Produto.getId());
+                        stmtInsertProdutoEstoque.setInt(2, quantidade);
+                        stmtInsertProdutoEstoque.setDate(3, dataAtual);
+                        stmtInsertProdutoEstoque.execute();
+                    }  catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            } else {
+                String updateSaida = "UPDATE estoque SET quantidade = quantidade - ? WHERE id_produto = ?";
+                try{
+                    PreparedStatement updateProdutoEstoque = conn.prepareStatement(updateSaida);
+                    updateProdutoEstoque.setInt(1, quantidade);
+                    updateProdutoEstoque.setInt(2, Produto.getId());
+                    updateProdutoEstoque.execute();
+                }  catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return true;
     }
 
     public List<Estoque> listEstoque(){
