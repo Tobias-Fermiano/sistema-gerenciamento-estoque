@@ -76,7 +76,7 @@ public class EstoqueDAO {
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String sql2 = "SELECT * FROM produtos WHERE id = ?";
+                String sql2 = "SELECT * FROM produtos WHERE id_produto = ?";
                 PreparedStatement stmt2 = conn.prepareStatement(sql2);
                 stmt2.setInt(1, rs.getInt("id_produto"));
                 ResultSet rs2 = stmt2.executeQuery();

@@ -43,7 +43,7 @@ public class ProdutosDAO {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 Produtos produtos = new Produtos();
-                produtos.setId(rs.getInt("id"));
+                produtos.setId(rs.getInt("id_produto"));
                 produtos.setDescricao(rs.getString("descricao"));
                 produtos.setValor(rs.getDouble("valor"));
                 retorno.add(produtos);
@@ -55,7 +55,7 @@ public class ProdutosDAO {
     }
 
     public boolean removerProduto(Produtos produto){
-        String sql = "DELETE from produtos where id = (?)";
+        String sql = "DELETE from produtos where id_produto = (?)";
         try{
             PreparedStatement smtm = conn.prepareStatement(sql);
             smtm.setInt(1, produto.getId());
@@ -92,7 +92,7 @@ public class ProdutosDAO {
             ResultSet rs = smtm.executeQuery();
             while(rs.next()){
                 Produtos produtos = new Produtos();
-                produtos.setId(rs.getInt("id"));
+                produtos.setId(rs.getInt("id_produto"));
                 produtos.setDescricao(rs.getString("descricao"));
                 produtos.setValor(rs.getDouble("valor"));
                 retorno.add(produtos);
