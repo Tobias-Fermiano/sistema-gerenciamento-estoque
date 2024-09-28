@@ -54,8 +54,8 @@
                       <TableColumn fx:id="colCodEstoque" prefWidth="75.0" text="Código" />
                       <TableColumn fx:id="colDescricaoEstoque" prefWidth="326.3999786376953" text="Descrição" />
                         <TableColumn fx:id="colQuantidadeEstoque" prefWidth="84.800048828125" text="Quantidade" />
-                        <TableColumn fx:id="colValorTotalEstoque" prefWidth="84.0" text="Valor Total" />
                         <TableColumn fx:id="colValorUnitEstoque" prefWidth="92.0" text="Valor Unit." />
+                        <TableColumn fx:id="colValorTotalEstoque" prefWidth="84.0" text="Valor Total" />
                     </columns>
                   </TableView>
                </children>

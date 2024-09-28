@@ -23,42 +23,45 @@ public class EstoqueDAO {
 
     public boolean inserir(Produtos Produto, int quantidade, String movimento){
         String findProdutoEstoque = "SELECT * FROM estoque WHERE id_produto = ?";
-        Produtos produto = new Produtos();
+        //Produtos produto = new Produtos();
         try{
             PreparedStatement stmtProdutoEstoque = conn.prepareStatement(findProdutoEstoque);
             stmtProdutoEstoque.setInt(1, Produto.getId());
             ResultSet rs = stmtProdutoEstoque.executeQuery();
-            if (movimento == "E"){
+            if (movimento.equals("E")){
                 if (rs.next()){
-                    String updateEntrada = "UPDATE estoque SET quantidade = quantidade + ? WHERE id_produto = ?";
+                    String updateEntrada = "UPDATE estoque SET quantidade = quantidade + ?, movimento = ? WHERE id_produto = ?";
                     try{
                         PreparedStatement updateProdutoEstoque = conn.prepareStatement(updateEntrada);
                         updateProdutoEstoque.setInt(1, quantidade);
-                        updateProdutoEstoque.setInt(2, Produto.getId());
-                        updateProdutoEstoque.execute();
+                        updateProdutoEstoque.setString(2, movimento);
+                        updateProdutoEstoque.setInt(3, Produto.getId());
+                        updateProdutoEstoque.executeUpdate();
                     }  catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 }else {
-                    String insertProdutoEstoque = "INSERT INTO estoque(id_produto, quantidade, data) VALUES(?,?,?)";
+                    String insertProdutoEstoque = "INSERT INTO estoque(id_produto, quantidade, data, movimento) VALUES(?,?,?,?)";
                     Date dataAtual = Date.valueOf(LocalDate.now());
                     try{
                         PreparedStatement stmtInsertProdutoEstoque = conn.prepareStatement(insertProdutoEstoque);
                         stmtInsertProdutoEstoque.setInt(1, Produto.getId());
                         stmtInsertProdutoEstoque.setInt(2, quantidade);
                         stmtInsertProdutoEstoque.setDate(3, dataAtual);
+                        stmtInsertProdutoEstoque.setString(4, movimento);
                         stmtInsertProdutoEstoque.execute();
                     }  catch (SQLException e) {
                         throw new RuntimeException(e);
                     }
                 }
             } else {
-                String updateSaida = "UPDATE estoque SET quantidade = quantidade - ? WHERE id_produto = ?";
+                String updateSaida = "UPDATE estoque SET quantidade = quantidade - ?, movimento =  ? WHERE id_produto = ?";
                 try{
                     PreparedStatement updateProdutoEstoque = conn.prepareStatement(updateSaida);
                     updateProdutoEstoque.setInt(1, quantidade);
-                    updateProdutoEstoque.setInt(2, Produto.getId());
-                    updateProdutoEstoque.execute();
+                    updateProdutoEstoque.setString(2, movimento);
+                    updateProdutoEstoque.setInt(3, Produto.getId());
+                    updateProdutoEstoque.executeUpdate();
                 }  catch (SQLException e) {
                     throw new RuntimeException(e);
                 }

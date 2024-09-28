@@ -5,6 +5,7 @@ public class Produtos {
     private int id;
     private String descricao;
     private double valor;
+    private String movimento;
 
     public Produtos(int id, String descricao, double valor) {
         this.id = id;
@@ -39,4 +40,13 @@ public class Produtos {
     public void setValor(double valor) {
         this.valor = valor;
     }
+
+    private void setMovimento(){
+        this.movimento = movimento;
+    }
+
+    public String getMovimento() {
+        return movimento;
+    }
+
 }

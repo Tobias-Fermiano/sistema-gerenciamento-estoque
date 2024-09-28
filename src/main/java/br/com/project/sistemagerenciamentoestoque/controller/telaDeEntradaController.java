@@ -27,6 +27,10 @@ public class telaDeEntradaController implements Initializable {
     private Button btnEntrar;
     @FXML
     private Button btnSair;
+    @FXML
+    private TextField textFieldUsuario;
+    @FXML
+    private TextField textFieldSenha;
 
     private Scene scene;
     private Stage stage;
@@ -40,10 +44,22 @@ public class telaDeEntradaController implements Initializable {
         this.stage = stage;
     }
 
+    public void validaUser(TextField textFieldUsuario, TextField textFieldSenha) {
+        this.textFieldUsuario = textFieldUsuario;
+        this.textFieldSenha = textFieldSenha;
+
+        //após isto, fazer uma chamada para uma classe DAO.
+    }
+
     @FXML
     public void hyperlinkDesenvolvido() throws URISyntaxException, IOException {
-        String url = "https://github.com/gustavorieg";
-        Desktop.getDesktop().browse(new URI(url));
+        String url1 = "https://github.com/CassioVSouza";
+        String url2 = "https://github.com/gustavorieg";
+        String url3 = "https://github.com/Tobias-Fermiano";
+
+        Desktop.getDesktop().browse(new URI(url1));
+        Desktop.getDesktop().browse(new URI(url2));
+        Desktop.getDesktop().browse(new URI(url3));
     }
 
     @FXML
