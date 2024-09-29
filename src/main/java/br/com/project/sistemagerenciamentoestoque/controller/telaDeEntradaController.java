@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class telaDeEntradaController implements Initializable {
@@ -44,22 +45,24 @@ public class telaDeEntradaController implements Initializable {
         this.stage = stage;
     }
 
-    public void validaUser(TextField textFieldUsuario, TextField textFieldSenha) {
-        this.textFieldUsuario = textFieldUsuario;
-        this.textFieldSenha = textFieldSenha;
-
-        //após isto, fazer uma chamada para uma classe DAO.
+    @FXML
+    public void showCadastroUserDialog() throws SQLException, IOException {
+        loginController cadastro = new loginController();
+        cadastro.setStage(stage);
+        cadastro.showCadastroUserDialog();
     }
 
     @FXML
     public void hyperlinkDesenvolvido() throws URISyntaxException, IOException {
-        String url1 = "https://github.com/CassioVSouza";
-        String url2 = "https://github.com/gustavorieg";
-        String url3 = "https://github.com/Tobias-Fermiano";
+        String[] urls = {
+            "https://github.com/CassioVSouza",
+            "https://github.com/gustavorieg",
+            "https://github.com/Tobias-Fermiano"
+        };
 
-        Desktop.getDesktop().browse(new URI(url1));
-        Desktop.getDesktop().browse(new URI(url2));
-        Desktop.getDesktop().browse(new URI(url3));
+        for (String url : urls){
+            Desktop.getDesktop().browse(new URI(url));
+        }
     }
 
     @FXML
@@ -84,7 +87,9 @@ public class telaDeEntradaController implements Initializable {
 
     @FXML
     public void sairTelaDeEntrada(){
-        this.stage.close();
+        if(stage != null){
+            this.stage.close();
+        }
     }
 
 }

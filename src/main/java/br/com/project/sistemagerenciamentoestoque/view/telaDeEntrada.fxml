@@ -73,7 +73,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Hyperlink fx:id="hyperlinkDesenvolvido1" layoutX="163.0" layoutY="133.0" onAction="#hyperlinkDesenvolvido" text="Cadastre-se" />
+                        <Hyperlink layoutX="163.0" layoutY="133.0" onAction="#showCadastroUserDialog" text="Cadastre-se" />
                      </children>
                   </Pane>
                </children>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="116.0" prefWidth="282.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.loginController">
+   <children>
+      <Pane layoutY="-4.0" prefHeight="116.0" prefWidth="283.0">
+         <children>
+            <Button fx:id="btnUserDialogEnviar" layoutX="155.0" layoutY="80.0" mnemonicParsing="false" onAction="#UserDialogEnviar" text="Salvar" />
+            <Button fx:id="btnUserDialogCancelar" layoutX="213.0" layoutY="80.0" mnemonicParsing="false" onAction="#UserDialogCancelar" prefHeight="25.0" prefWidth="62.0" text="Cancelar" />
+            <TextField fx:id="txtFieldSenhaUser" layoutX="14.0" layoutY="80.0" prefHeight="25.0" prefWidth="130.0" />
+            <TextField fx:id="txtFieldNomeUser" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="261.0" />
+            <Label layoutX="14.0" layoutY="14.0" text="Nome" />
+            <Label layoutX="14.0" layoutY="65.0" text="Senha" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
