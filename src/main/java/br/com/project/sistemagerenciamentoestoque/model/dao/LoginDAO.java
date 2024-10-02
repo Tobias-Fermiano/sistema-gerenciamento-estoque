@@ -1,8 +1,5 @@
 package br.com.project.sistemagerenciamentoestoque.model.dao;
-
-import br.com.project.sistemagerenciamentoestoque.model.domain.Produtos;
 import br.com.project.sistemagerenciamentoestoque.model.domain.Usuario;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,19 +11,21 @@ import java.util.logging.Logger;
 
 public class LoginDAO {
 
-        private Connection conn;
+        private Connection connection;
+
+        public void setConnection(Connection conn){
+            this.connection = conn;
+        }
 
         public Connection getConnection(){
-            return conn;
-        }
-        public void setConnection(Connection conn){
-            this.conn = conn;
+            return connection;
         }
 
         public boolean inserirUser(Usuario usuario) throws SQLException {
             String sql = "INSERT INTO usuario(nome, senha) VALUES(?,?)";
             try{
-                PreparedStatement stmt = conn.prepareStatement(sql);
+                System.out.println(connection);
+                PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, usuario.getNome());
                 stmt.setString(2, usuario.getSenha());
                 stmt.execute();
@@ -40,7 +39,7 @@ public class LoginDAO {
         public boolean updateUser(Usuario usuario) throws SQLException {
             String sql = "UPDATE usuario set nome = ?, senha = ? where id = (?)";
             try{
-                PreparedStatement stmt = conn.prepareStatement(sql);
+                PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, usuario.getNome());
                 stmt.setString(2, usuario.getSenha());
                 stmt.execute();
@@ -55,7 +54,7 @@ public class LoginDAO {
             String sql = "SELECT * from usuario";
             List<Usuario> users = new ArrayList<>();
             try{
-                PreparedStatement stmt = conn.prepareStatement(sql);
+                PreparedStatement stmt = connection.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
                     Usuario usuarios = new Usuario("", "");

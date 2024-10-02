@@ -2,20 +2,31 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="116.0" prefWidth="282.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.loginController">
+<AnchorPane prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.loginController">
    <children>
-      <Pane layoutY="-4.0" prefHeight="116.0" prefWidth="283.0">
+      <Pane layoutX="20.0" layoutY="20.0" prefHeight="360.0" prefWidth="510.0" style="-fx-background-color: #f5f5f5; -fx-border-color: #dcdcdc; -fx-border-radius: 10; -fx-background-radius: 10;">
          <children>
-            <Button fx:id="btnUserDialogEnviar" layoutX="155.0" layoutY="80.0" mnemonicParsing="false" onAction="#UserDialogEnviar" text="Salvar" />
-            <Button fx:id="btnUserDialogCancelar" layoutX="213.0" layoutY="80.0" mnemonicParsing="false" onAction="#UserDialogCancelar" prefHeight="25.0" prefWidth="62.0" text="Cancelar" />
-            <TextField fx:id="txtFieldSenhaUser" layoutX="14.0" layoutY="80.0" prefHeight="25.0" prefWidth="130.0" />
-            <TextField fx:id="txtFieldNomeUser" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="261.0" />
-            <Label layoutX="14.0" layoutY="14.0" text="Nome" />
-            <Label layoutX="14.0" layoutY="65.0" text="Senha" />
+            <Label layoutX="20.0" layoutY="20.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Nome" />
+            <TextField fx:id="txtFieldNomeUser" layoutX="20.0" layoutY="45.0" prefHeight="30.0" prefWidth="470.0" promptText="Digite o nome" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+
+            <Label layoutX="20.0" layoutY="85.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Senha" />
+            <PasswordField fx:id="txtFieldSenhaUser" layoutX="20.0" layoutY="110.0" prefHeight="30.0" prefWidth="470.0" promptText="Digite a senha" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+
+            <Label layoutX="20.0" layoutY="150.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Confirmação da Senha" />
+            <PasswordField fx:id="txtFieldConfirmaSenha" layoutX="20.0" layoutY="175.0" prefHeight="30.0" prefWidth="470.0" promptText="Confirme a senha" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+
+            <Label layoutX="20.0" layoutY="215.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Tipo de Usuário" />
+            <RadioButton fx:id="btnAdiministrador" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" style="-fx-font-size: 12px;" text="Administrador" />
+            <RadioButton fx:id="btnUsuario" layoutX="150.0" layoutY="240.0" mnemonicParsing="false" style="-fx-font-size: 12px;" text="Usuário" />
+
+            <Button fx:id="btnUserDialogEnviar" layoutX="310.0" layoutY="300.0" onAction="#UserDialogEnviar" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;" text="Salvar" />
+            <Button fx:id="btnUserDialogCancelar" layoutX="405.0" layoutY="300.0" onAction="#UserDialogCancelar" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 5;" text="Cancelar" />
          </children>
       </Pane>
    </children>
