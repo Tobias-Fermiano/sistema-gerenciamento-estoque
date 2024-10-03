@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -23,6 +25,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(root);
         stage.setResizable(false);
+        //stage.getIcons().add(new Image(getClass().getResourceAsStream("/br/com/project/sistemagerenciamentoestoque/arquivos/icons/entrada.png")));
         stage.setTitle("Gerenciamento de Estoque");
         stage.setScene(scene);
 

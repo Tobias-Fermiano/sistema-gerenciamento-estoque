@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class telaDeEntradaController implements Initializable {
@@ -27,6 +28,10 @@ public class telaDeEntradaController implements Initializable {
     private Button btnEntrar;
     @FXML
     private Button btnSair;
+    @FXML
+    private TextField textFieldUsuario;
+    @FXML
+    private TextField textFieldSenha;
 
     private Scene scene;
     private Stage stage;
@@ -41,9 +46,23 @@ public class telaDeEntradaController implements Initializable {
     }
 
     @FXML
+    public void showCadastroUserDialog() throws SQLException, IOException {
+        loginController cadastro = new loginController();
+        cadastro.setStage(stage);
+        cadastro.showCadastroUserDialog();
+    }
+
+    @FXML
     public void hyperlinkDesenvolvido() throws URISyntaxException, IOException {
-        String url = "https://github.com/gustavorieg";
-        Desktop.getDesktop().browse(new URI(url));
+        String[] urls = {
+            "https://github.com/CassioVSouza",
+            "https://github.com/gustavorieg",
+            "https://github.com/Tobias-Fermiano"
+        };
+
+        for (String url : urls){
+            Desktop.getDesktop().browse(new URI(url));
+        }
     }
 
     @FXML
@@ -68,7 +87,9 @@ public class telaDeEntradaController implements Initializable {
 
     @FXML
     public void sairTelaDeEntrada(){
-        this.stage.close();
+        if(stage != null){
+            this.stage.close();
+        }
     }
 
 }
