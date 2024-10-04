@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
@@ -39,8 +36,11 @@ public class loginController extends ReflectiveOperationException implements Ini
     @FXML
     private RadioButton btnUsuario;
     @FXML
-    private RadioButton btnAdministrador;
+    private RadioButton btnAdiministrador;
+    @FXML
+    private ToggleGroup grupoTipoUsuario;
 
+//    private ToggleGroup grupoUsuarios;
     private Stage stagePrimario;
     private Usuario usuario;
 
@@ -55,6 +55,13 @@ public class loginController extends ReflectiveOperationException implements Ini
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginDAO.setConnection(connection);
+
+        if (btnAdiministrador != null && btnUsuario != null) {
+            btnAdiministrador.setToggleGroup(grupoTipoUsuario);
+            btnUsuario.setToggleGroup(grupoTipoUsuario);
+        } else {
+            System.out.println("Um ou mais elementos não foram inicializados.");
+        }
     }
 
     @FXML
