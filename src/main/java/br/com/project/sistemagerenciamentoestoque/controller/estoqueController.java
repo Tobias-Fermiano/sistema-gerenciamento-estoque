@@ -109,7 +109,7 @@ public class estoqueController implements Initializable {
         if (movimento != null && !txtFieldDescricao.getText().isEmpty() && !txtFeildQtdProduto.getText().isEmpty()) {
             if(movimento == "Entrada"){
                 movimento = "E";
-                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()), movimento);
+                estoqueDAO.inserir(this.produto, Double.parseDouble(txtFeildQtdProduto.getText()), movimento);
             } else{
                 movimento = "S";
                 estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()), movimento);

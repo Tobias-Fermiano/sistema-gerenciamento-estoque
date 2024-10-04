@@ -6,8 +6,6 @@ import br.com.project.sistemagerenciamentoestoque.model.domain.Produtos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.time.LocalDate;
 
 public class EstoqueDAO {
@@ -21,7 +19,7 @@ public class EstoqueDAO {
         this.conn = conn;
     }
 
-    public boolean inserir(Produtos Produto, int quantidade, String movimento){
+    public boolean inserir(Produtos Produto, double quantidade, String movimento){
         String findProdutoEstoque = "SELECT * FROM estoque WHERE id_produto = ?";
         //Produtos produto = new Produtos();
         try{
@@ -33,7 +31,7 @@ public class EstoqueDAO {
                     String updateEntrada = "UPDATE estoque SET quantidade = quantidade + ?, movimento = ? WHERE id_produto = ?";
                     try{
                         PreparedStatement updateProdutoEstoque = conn.prepareStatement(updateEntrada);
-                        updateProdutoEstoque.setInt(1, quantidade);
+                        updateProdutoEstoque.setDouble(1, quantidade);
                         updateProdutoEstoque.setString(2, movimento);
                         updateProdutoEstoque.setInt(3, Produto.getId());
                         updateProdutoEstoque.executeUpdate();
@@ -46,7 +44,7 @@ public class EstoqueDAO {
                     try{
                         PreparedStatement stmtInsertProdutoEstoque = conn.prepareStatement(insertProdutoEstoque);
                         stmtInsertProdutoEstoque.setInt(1, Produto.getId());
-                        stmtInsertProdutoEstoque.setInt(2, quantidade);
+                        stmtInsertProdutoEstoque.setDouble(2, quantidade);
                         stmtInsertProdutoEstoque.setDate(3, dataAtual);
                         stmtInsertProdutoEstoque.setString(4, movimento);
                         stmtInsertProdutoEstoque.execute();
@@ -58,7 +56,7 @@ public class EstoqueDAO {
                 String updateSaida = "UPDATE estoque SET quantidade = quantidade - ?, movimento =  ? WHERE id_produto = ?";
                 try{
                     PreparedStatement updateProdutoEstoque = conn.prepareStatement(updateSaida);
-                    updateProdutoEstoque.setInt(1, quantidade);
+                    updateProdutoEstoque.setDouble(1, quantidade);
                     updateProdutoEstoque.setString(2, movimento);
                     updateProdutoEstoque.setInt(3, Produto.getId());
                     updateProdutoEstoque.executeUpdate();
