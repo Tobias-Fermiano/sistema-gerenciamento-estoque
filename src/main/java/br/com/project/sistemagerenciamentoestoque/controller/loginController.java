@@ -40,7 +40,6 @@ public class loginController extends ReflectiveOperationException implements Ini
     @FXML
     private ToggleGroup grupoTipoUsuario;
 
-//    private ToggleGroup grupoUsuarios;
     private Stage stagePrimario;
     private Usuario usuario;
 
@@ -55,13 +54,6 @@ public class loginController extends ReflectiveOperationException implements Ini
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginDAO.setConnection(connection);
-
-        if (btnAdiministrador != null && btnUsuario != null) {
-            btnAdiministrador.setToggleGroup(grupoTipoUsuario);
-            btnUsuario.setToggleGroup(grupoTipoUsuario);
-        } else {
-            System.out.println("Um ou mais elementos não foram inicializados.");
-        }
     }
 
     @FXML
@@ -79,7 +71,6 @@ public class loginController extends ReflectiveOperationException implements Ini
         newStage.show();
     }
 
-//javafx.event.ActionEvent actionEvent
 
     public void UserDialogCancelar(){
         if(stagePrimario != null){
@@ -92,9 +83,23 @@ public class loginController extends ReflectiveOperationException implements Ini
         try{
             if(!txtFieldSenhaUser.getText().isEmpty() && !txtFieldNomeUser.getText().isEmpty() && !txtFieldConfirmaSenha.getText().isEmpty()){
                 Usuario usuario = new Usuario();
-                if(txtFieldSenhaUser.getText().equals(txtFieldConfirmaSenha.getText())){
+
+                if(btnUsuario.isSelected()){
+                    usuario.setPermissao(false);
+                }else{
+                    usuario.setPermissao(true);
+                }
+
+                if(txtFieldSenhaUser.getText().equals(txtFieldConfirmaSenha.getText()) && usuario.getPermissao().equals(true)){
                     usuario.setNome(txtFieldNomeUser.getText());
                     usuario.setSenha(txtFieldSenhaUser.getText());
+                    usuario.setPermissao(true);
+                    loginDAO.inserirUser(usuario);
+                    this.stagePrimario.close();
+                }else if(txtFieldSenhaUser.getText().equals(txtFieldConfirmaSenha.getText()) && usuario.getPermissao().equals(false)){
+                    usuario.setNome(txtFieldNomeUser.getText());
+                    usuario.setSenha(txtFieldSenhaUser.getText());
+                    usuario.setPermissao(false);
                     loginDAO.inserirUser(usuario);
                     this.stagePrimario.close();
                 }else{
@@ -109,12 +114,4 @@ public class loginController extends ReflectiveOperationException implements Ini
             alert.show();
         }
     }
-
-
-//    public void setUsuario(Usuario usuario){
-//        this.usuario = usuario;
-//        this.txtFieldNomeUser.setText(usuario.getNome());
-//        this.txtFieldSenhaUser.setText(usuario.getSenha());
-//    }
-
 }

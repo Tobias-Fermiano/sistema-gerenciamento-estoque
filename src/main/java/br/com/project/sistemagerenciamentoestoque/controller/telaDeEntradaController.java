@@ -1,5 +1,9 @@
 package br.com.project.sistemagerenciamentoestoque.controller;
 
+import br.com.project.sistemagerenciamentoestoque.model.dao.LoginDAO;
+import br.com.project.sistemagerenciamentoestoque.model.database.Database;
+import br.com.project.sistemagerenciamentoestoque.model.database.DatabaseFactory;
+import br.com.project.sistemagerenciamentoestoque.model.domain.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
@@ -17,6 +22,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -29,16 +35,20 @@ public class telaDeEntradaController implements Initializable {
     @FXML
     private Button btnSair;
     @FXML
-    private TextField textFieldUsuario;
+    private javafx.scene.control.TextField txtFieldUsuario;
     @FXML
-    private TextField textFieldSenha;
+    private javafx.scene.control.TextField txtFieldSenha;
 
     private Scene scene;
     private Stage stage;
 
+    private final Database database = DatabaseFactory.getDatabase("postgresql");
+    private final Connection connection = database.conectar();
+    private final LoginDAO loginDAO = new LoginDAO();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //
+        loginDAO.setConnection(connection);
     }
 
     public void setStage(Stage stage) {
@@ -66,23 +76,56 @@ public class telaDeEntradaController implements Initializable {
     }
 
     @FXML
-    protected void entrarTelaPrincipal(ActionEvent event) throws IOException {
-        URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml").toURI().toURL();
-        FXMLLoader loader = new FXMLLoader(url);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+    protected void validaUser() throws SQLException, URISyntaxException {
+        Usuario usuario = new Usuario();
 
-        Stage newStage = new Stage();
-        newStage.setScene(scene);
-        newStage.setTitle("Gerenciamento de Estoque");
-        newStage.setResizable(false);
-        newStage.setScene(scene);
+        try {
+            if (!txtFieldUsuario.getText().isEmpty() && !txtFieldSenha.getText().isEmpty()) {
+                LoginDAO user = new LoginDAO();
+                usuario.setNome(txtFieldUsuario.getText());
+                usuario.setSenha(txtFieldSenha.getText());
+                user.verificaUsuario(usuario);
+                if(user.equals(true)){
+                    entrarTelaPrincipal(usuario);
+                }
+            }
+        }catch(IllegalArgumentException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        telaPrincipalController controller = loader.getController();
-        controller.setStage(newStage);
+    protected void entrarTelaPrincipal(Usuario usuario) throws IOException {
+        String fxmlFile = usuario.getPermissao() ?
+                "src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml" :
+                "src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipalUser.fxml";
 
-        newStage.show();
-        stage.close();
+        try {
+            URL url = new File(fxmlFile).toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setTitle("Gerenciamento de Estoque");
+            newStage.setResizable(false);
+
+            telaPrincipalController controller = loader.getController();
+            controller.setStage(newStage);
+            newStage.show();
+        } catch (IllegalArgumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Erro ao carregar a tela: " + e.getMessage());
+            alert.show();
+        } finally {
+            if (stage != null) {
+                stage.close();
+            }
+        }
     }
 
     @FXML

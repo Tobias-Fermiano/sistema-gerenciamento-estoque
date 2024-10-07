@@ -4,13 +4,23 @@ public class Usuario {
 
     private String nome;
     private String senha;
+    private Boolean permissao;
 
-    public Usuario(String nome, String senha){
+    public Usuario(String nome, String senha, Boolean permissao){
         this.nome = nome;
         this.senha = senha;
+        this.permissao = permissao;
     }
 
     public Usuario(){}
+
+    public Boolean getPermissao() {
+        return permissao;
+    }
+
+    public void setPermissao(Boolean permissao) {
+        this.permissao = permissao;
+    }
 
     public String getNome() {
         return nome;
