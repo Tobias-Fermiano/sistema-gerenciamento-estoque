@@ -1,0 +1,25 @@
+Informações do Script do Banco de Dados.
+
+CREATE TABLE public.estoque (
+	id_produto int4 NULL,
+	quantidade numeric(10, 2) NULL,
+	"data" date NOT NULL,
+	movimento bpchar(1) NULL
+);
+
+ALTER TABLE public.estoque ADD CONSTRAINT fk_produto FOREIGN KEY (id_produto) REFERENCES public.produtos(id_produto) ON DELETE CASCADE;
+
+CREATE TABLE public.produtos (
+	id_produto serial4 NOT NULL,
+	descricao varchar(255) NULL,
+	valor numeric(10, 2) NULL,
+	CONSTRAINT produtos_pkey PRIMARY KEY (id_produto)
+);
+
+CREATE TABLE public.usuario (
+	id serial4 NOT NULL,
+	nome varchar(255) NULL,
+	senha varchar(100) NULL,
+	permissao bool NULL,
+	CONSTRAINT usuario_pkey PRIMARY KEY (id)
+);
