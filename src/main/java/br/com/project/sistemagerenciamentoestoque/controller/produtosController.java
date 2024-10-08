@@ -108,11 +108,11 @@ public class produtosController implements Initializable {
     }
 
     public void editarProdutoDialog() throws SQLException, IOException {
-        Produtos produtos = tblViewProdutos.getSelectionModel().getSelectedItem();
+        Produtos produto = tblViewProdutos.getSelectionModel().getSelectedItem();
 
-        if (produtos != null) {
-            if(showCadastrosClientesDialog(produtos)){
-                produtosDAO.editarProduto(produtos);
+        if (produto != null) {
+            if(showCadastrosClientesDialog(produto)){
+                produtosDAO.editarProduto(produto);
                 carregarTableViewProdutos();
             }
         } else {

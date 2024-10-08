@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.ToggleGroup?>
 
 <AnchorPane prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.loginController">
    <children>
@@ -22,8 +23,15 @@
             <PasswordField fx:id="txtFieldConfirmaSenha" layoutX="20.0" layoutY="175.0" prefHeight="30.0" prefWidth="470.0" promptText="Confirme a senha" style="-fx-background-radius: 5; -fx-border-radius: 5;" />
 
             <Label layoutX="20.0" layoutY="215.0" style="-fx-font-size: 14px; -fx-font-weight: bold;" text="Tipo de Usuário" />
-            <RadioButton fx:id="btnAdiministrador" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" style="-fx-font-size: 12px;" text="Administrador" />
-            <RadioButton fx:id="btnUsuario" layoutX="150.0" layoutY="240.0" mnemonicParsing="false" style="-fx-font-size: 12px;" text="Usuário" />
+
+            <!-- Grupo Toggle para RadioButtons -->
+            <RadioButton fx:id="btnAdiministrador" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" style="-fx-font-size: 12px;" text="Administrador">
+               <toggleGroup>
+                  <ToggleGroup fx:id="grupoTipoUsuario" />
+               </toggleGroup>
+            </RadioButton>
+
+            <RadioButton fx:id="btnUsuario" layoutX="150.0" layoutY="240.0" mnemonicParsing="false" style="-fx-font-size: 12px;" text="Usuário" toggleGroup="$grupoTipoUsuario" />
 
             <Button fx:id="btnUserDialogEnviar" layoutX="310.0" layoutY="300.0" onAction="#UserDialogEnviar" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;" text="Salvar" />
             <Button fx:id="btnUserDialogCancelar" layoutX="405.0" layoutY="300.0" onAction="#UserDialogCancelar" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-background-radius: 5;" text="Cancelar" />

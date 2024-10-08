@@ -15,7 +15,7 @@
          <children>
             <Group layoutX="18.0" layoutY="13.0">
                <children>
-                  <Button fx:id="btnPrincpalProdutos" layoutX="28.0" layoutY="2.0" mnemonicParsing="false" onAction="#telaProdutos" prefHeight="63.0" prefWidth="152.0" text="PRODUTOS">
+                  <Button fx:id="btnPrincpalProdutos" layoutX="17.0" mnemonicParsing="false" onAction="#telaProdutos" prefHeight="63.0" prefWidth="152.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #388E3C;" text="PRODUTOS">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -24,7 +24,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnPrincpalEstoque" layoutX="243.0" layoutY="1.0" mnemonicParsing="false" onAction="#telaEstoque" prefHeight="63.0" prefWidth="152.0" text="ESTOQUE">
+                  <Button fx:id="btnPrincpalEstoque" layoutX="242.0" layoutY="1.0" mnemonicParsing="false" onAction="#telaEstoque" prefHeight="63.0" prefWidth="152.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #1976D2;" text="ESTOQUE">
                      <graphic>
                         <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnPrincpalSair" layoutX="458.0" layoutY="2.0" mnemonicParsing="false" onAction="#btnPrincipalSair" prefHeight="63.0" prefWidth="152.0" text=" SAIR">
+                  <Button fx:id="btnPrincpalSair" layoutX="466.0" layoutY="1.0" mnemonicParsing="false" onAction="#btnPrincipalSair" prefHeight="63.0" prefWidth="152.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #D32F2F;" text=" SAIR">
                      <graphic>
                         <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>

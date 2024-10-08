@@ -11,44 +11,47 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="361.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.estoqueProdutosDialogController">
-   <children>
-      <Button fx:id="btnPesquisarProduto" layoutX="299.0" layoutY="15.0" mnemonicParsing="false" onAction="#pesquisarProduto" prefHeight="26.0" prefWidth="74.0" text="Pesquisar" />
-      <TextField fx:id="txtFieldPesquisarProduto" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="276.0" />
-      <ScrollPane layoutX="-1.0" layoutY="129.0" prefHeight="231.0" prefWidth="388.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="386.0">
-               <children>
-                  <TableView fx:id="tblViewProdutos" prefHeight="231.0" prefWidth="388.0">
-                    <columns>
-                      <TableColumn fx:id="tblColumnCodigo" prefWidth="58.39996486902237" text="Código" />
-                      <TableColumn fx:id="tblColumnDescricao" prefWidth="249.60005950927734" text="Descrição" />
-                        <TableColumn fx:id="tblColumnValor" prefWidth="60.79998779296875" text="Valor" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <GridPane layoutX="14.0" layoutY="57.0" prefHeight="64.0" prefWidth="306.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.5999755859375" minWidth="10.0" prefWidth="58.199951171875" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.4000244140625" minWidth="10.0" prefWidth="248.600048828125" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label text="Código:" />
-            <Label text="Descrição:" GridPane.rowIndex="1" />
-            <Label text="Valor:" GridPane.rowIndex="2" />
-            <Label fx:id="lblCodigo" GridPane.columnIndex="1" />
-            <Label fx:id="lblDescricao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="lblValor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
-      <Button fx:id="btnEscolherProduto" layoutX="316.0" layoutY="94.0" mnemonicParsing="false" onAction="#escolherProdutoDialog" text="Escolher" />
-   </children>
+<AnchorPane prefHeight="361.0" prefWidth="377.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.estoqueProdutosDialogController">
+    <children>
+        <TextField fx:id="txtFieldPesquisarProduto" layoutX="18.0" layoutY="15.0" prefHeight="26.0" prefWidth="276.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #BDBDBD; -fx-border-radius: 5;" />
+        <Button fx:id="btnPesquisarProduto" layoutX="303.0" layoutY="15.0" mnemonicParsing="false" onAction="#pesquisarProduto" prefHeight="26.0" prefWidth="74.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="Pesquisar" />
+
+        <GridPane layoutX="13.0" layoutY="55.0" prefHeight="64.0" prefWidth="362.0" style="-fx-padding: 10;">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.5999755859375" minWidth="10.0" prefWidth="58.199951171875" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="280.4000244140625" minWidth="10.0" prefWidth="248.600048828125" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label style="-fx-font-weight: bold;" text="Código:" />
+                <Label prefHeight="16.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Descrição:" GridPane.rowIndex="1" />
+                <Label prefHeight="17.0" prefWidth="63.0" style="-fx-font-weight: bold;" text="Valor:" GridPane.rowIndex="2" />
+                <Label fx:id="lblCodigo" GridPane.columnIndex="1" />
+                <Label fx:id="lblDescricao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="lblValor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            </children>
+        </GridPane>
+
+        <Button fx:id="btnEscolherProduto" layoutX="311.0" layoutY="74.0" mnemonicParsing="false" onAction="#escolherProdutoDialog" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="Escolher" />
+
+        <ScrollPane layoutX="0.0" layoutY="129.0" prefHeight="231.0" prefWidth="388.0" style="-fx-background-color: transparent;">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="275.0" prefWidth="386.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
+                    <children>
+                        <TableView fx:id="tblViewProdutos" layoutY="-2.0" prefHeight="231.0" prefWidth="388.0" style="-fx-background-color: #FFFFFF;">
+                            <columns>
+                                <TableColumn fx:id="tblColumnCodigo" prefWidth="58.39996486902237" text="Código" />
+                                <TableColumn fx:id="tblColumnDescricao" prefWidth="249.60005950927734" text="Descrição" />
+                                <TableColumn fx:id="tblColumnValor" prefWidth="60.79998779296875" text="Valor" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>

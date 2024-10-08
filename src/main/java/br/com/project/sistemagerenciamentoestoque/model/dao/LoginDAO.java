@@ -1,9 +1,8 @@
 package br.com.project.sistemagerenciamentoestoque.model.dao;
 import br.com.project.sistemagerenciamentoestoque.model.domain.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javafx.scene.control.Alert;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,12 +21,13 @@ public class LoginDAO {
         }
 
         public boolean inserirUser(Usuario usuario) throws SQLException {
-            String sql = "INSERT INTO usuario(nome, senha) VALUES(?,?)";
+            String sql = "INSERT INTO usuario(nome, senha, permissao) VALUES(?,?,?)";
             try{
                 System.out.println(connection);
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, usuario.getNome());
                 stmt.setString(2, usuario.getSenha());
+                stmt.setBoolean(3, usuario.getPermissao());
                 stmt.execute();
                 return true;
             } catch (SQLException ex){
@@ -50,6 +50,26 @@ public class LoginDAO {
             }
         }
 
+        public boolean verificaUsuario(Usuario usuario) throws SQLException {
+            String sql = "SELECT * FROM usuario WHERE nome = ? AND senha = ?";
+
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setString(1, usuario.getNome());
+                stmt.setString(2, usuario.getSenha());
+
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    usuario.setPermissao(rs.getBoolean("permissao"));
+                    return true;
+                }else{
+                    throw new IllegalArgumentException("Usuário ou senha inválidos.");
+                }
+            }catch(SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+
         public List<Usuario> listarUsuarios() throws SQLException{
             String sql = "SELECT * from usuario";
             List<Usuario> users = new ArrayList<>();
@@ -57,9 +77,10 @@ public class LoginDAO {
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
-                    Usuario usuarios = new Usuario("", "");
+                    Usuario usuarios = new Usuario("", "", false);
                     usuarios.setNome(rs.getString("nome"));
                     usuarios.setSenha(rs.getString("senha"));
+                    usuarios.setPermissao(rs.getBoolean("permissao"));
                     users.add(usuarios);
                 }
             } catch (SQLException e) {
