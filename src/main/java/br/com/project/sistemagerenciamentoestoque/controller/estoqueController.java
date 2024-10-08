@@ -89,8 +89,8 @@ public class estoqueController implements Initializable {
         colCodEstoque.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDescricaoEstoque.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colQuantidadeEstoque.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
-        colValorTotalEstoque.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
         colValorUnitEstoque.setCellValueFactory(new PropertyValueFactory<>("valorUnit"));
+        colValorTotalEstoque.setCellValueFactory(new PropertyValueFactory<>("valorTotal"));
 
         listEstoque = estoqueDAO.listEstoque();
 
@@ -100,18 +100,16 @@ public class estoqueController implements Initializable {
 
     @FXML
     public void setarMovimentosChoiceBox(){
-        choiceBoxMovimento.setItems(FXCollections.observableArrayList(
-                "Entrada", "Saída"
-        ));
+        choiceBoxMovimento.setItems(FXCollections.observableArrayList("Entrada", "Saída"));
     }
 
     @FXML
     public void estoqueInserir(){
         String movimento = choiceBoxMovimento.getValue();
-        if (movimento != null && txtFieldDescricao.getText() != "" && txtFeildQtdProduto.getText() != "") {
+        if (movimento != null && !txtFieldDescricao.getText().isEmpty() && !txtFeildQtdProduto.getText().isEmpty()) {
             if(movimento == "Entrada"){
                 movimento = "E";
-                estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()), movimento);
+                estoqueDAO.inserir(this.produto, Double.parseDouble(txtFeildQtdProduto.getText()), movimento);
             } else{
                 movimento = "S";
                 estoqueDAO.inserir(this.produto, Integer.parseInt(txtFeildQtdProduto.getText()), movimento);

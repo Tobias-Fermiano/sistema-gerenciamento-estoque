@@ -10,44 +10,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="471.0" prefWidth="716.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.produtosController">
+<AnchorPane prefHeight="471.0" prefWidth="716.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.project.sistemagerenciamentoestoque.controller.produtosController">
    <children>
-      <Pane prefHeight="74.0" prefWidth="716.0">
+      <Pane prefHeight="74.0" prefWidth="716.0" style="-fx-padding: 10;">
          <children>
-            <TextField fx:id="txtFieldValor" layoutX="539.0" layoutY="42.0" prefHeight="25.0" prefWidth="163.0" />
-            <Label layoutX="11.0" layoutY="10.0" text="DESCRIÇÃO PRODUTO*">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="540.0" layoutY="13.0" text="VALOR*">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtFieldDescricao" layoutX="11.0" layoutY="40.0" prefHeight="28.0" prefWidth="439.0" />
+            <Label layoutX="11.0" layoutY="10.0" style="-fx-font-size: 18; -fx-text-fill: #333333;" text="DESCRIÇÃO PRODUTO" />
+            <TextField fx:id="txtFieldDescricao" layoutX="11.0" layoutY="40.0" prefHeight="28.0" prefWidth="439.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #BDBDBD; -fx-border-radius: 5;" />
+
+            <Label layoutX="527.0" layoutY="13.0" style="-fx-font-size: 18; -fx-text-fill: #333333;" text="VALOR" />
+            <TextField fx:id="txtFieldValor" layoutX="526.0" layoutY="42.0" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #BDBDBD; -fx-border-radius: 5;" />
          </children>
       </Pane>
-      <Pane layoutX="21.0" layoutY="81.0" prefHeight="60.0" prefWidth="667.0" style="-fx-background-color: gray;">
+      <Pane layoutX="11.0" layoutY="81.0" prefHeight="60.0" prefWidth="677.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #BDBDBD; -fx-border-radius: 5; -fx-padding: 10;">
          <children>
-            <Button fx:id="btnSalvarProdutos" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#inserirProduto" prefHeight="48.0" prefWidth="304.0" text="SALVAR PRODUTO">
-               <font>
-                  <Font size="18.0" />
-               </font>
+            <Button fx:id="btnSalvarProdutos" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#inserirProduto" prefHeight="48.0" prefWidth="304.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="SALVAR PRODUTO">
                <graphic>
-                  <ImageView fitHeight="36.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../arquivos/icons/salvar.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnEditarProduto" layoutX="325.0" layoutY="6.0" mnemonicParsing="false" onAction="#editarProdutoDialog" prefHeight="48.0" prefWidth="184.0" text="ALTERAR">
-               <font>
-                  <Font size="18.0" />
-               </font>
+            <Button fx:id="btnEditarProduto" layoutX="325.0" layoutY="6.0" mnemonicParsing="false" onAction="#editarProdutoDialog" prefHeight="48.0" prefWidth="184.0" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="ALTERAR">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -56,10 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnRemoverProdutos" layoutX="519.0" layoutY="6.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="48.0" prefWidth="139.0" text="EXCLUIR">
-               <font>
-                  <Font size="18.0" />
-               </font>
+            <Button fx:id="btnRemoverProdutos" layoutX="519.0" layoutY="6.0" mnemonicParsing="false" onAction="#removerProduto" prefHeight="48.0" prefWidth="139.0" style="-fx-background-color: #F44336; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="EXCLUIR">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,20 +54,20 @@
          </children>
       </Pane>
       <ScrollPane layoutY="147.0" prefHeight="284.0" prefWidth="716.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="709.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="709.0">
                <children>
-                  <TableView fx:id="tblViewProdutos" prefHeight="278.0" prefWidth="716.0">
-                    <columns>
-                      <TableColumn fx:id="tblColumnCodigo" prefWidth="87.2000122666359" text="CÓDIGO" />
-                      <TableColumn fx:id="tblColumnDescricao" prefWidth="489.4000015258789" text="DESCRIÇÃO DO PRODUTO" />
+                  <TableView fx:id="tblViewProdutos" prefHeight="278.0" prefWidth="716.0" style="-fx-background-color: #FFFFFF;">
+                     <columns>
+                        <TableColumn fx:id="tblColumnCodigo" prefWidth="87.2000122666359" text="CÓDIGO" />
+                        <TableColumn fx:id="tblColumnDescricao" prefWidth="489.4000015258789" text="DESCRIÇÃO DO PRODUTO" />
                         <TableColumn fx:id="tblColumnValor" prefWidth="120.0" text="VALOR" />
-                    </columns>
+                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
-        </content>
+         </content>
       </ScrollPane>
-      <Button fx:id="btnVoltarTelaPrincipal" layoutX="9.0" layoutY="436.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="28.0" prefWidth="67.0" text="VOLTAR" />
+      <Button fx:id="btnVoltarTelaPrincipal" layoutX="9.0" layoutY="436.0" mnemonicParsing="false" onAction="#voltarTelaPrincipal" prefHeight="28.0" prefWidth="67.0" style="-fx-background-color: #607D8B; -fx-text-fill: white; -fx-background-radius: 5;" text="VOLTAR" />
    </children>
 </AnchorPane>
