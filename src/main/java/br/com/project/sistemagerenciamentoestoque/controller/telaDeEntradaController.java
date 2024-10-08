@@ -79,32 +79,29 @@ public class telaDeEntradaController implements Initializable {
     protected void validaUser() throws SQLException, URISyntaxException {
         Usuario usuario = new Usuario();
 
-        try {
-            if (!txtFieldUsuario.getText().isEmpty() && !txtFieldSenha.getText().isEmpty()) {
-                LoginDAO user = new LoginDAO();
+        try{
+            if(!txtFieldUsuario.getText().isEmpty() && !txtFieldSenha.getText().isEmpty()) {
                 usuario.setNome(txtFieldUsuario.getText());
                 usuario.setSenha(txtFieldSenha.getText());
-                user.verificaUsuario(usuario);
-                if(user.equals(true)){
+
+                if(loginDAO.verificaUsuario(usuario)) {
                     entrarTelaPrincipal(usuario);
                 }
             }
-        }catch(IllegalArgumentException e){
+        } catch(IllegalArgumentException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(e.getMessage());
             alert.show();
-        }catch (IOException e) {
+        }catch(IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     protected void entrarTelaPrincipal(Usuario usuario) throws IOException {
-        String fxmlFile = usuario.getPermissao() ?
-                "src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml" :
-                "src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipalUser.fxml";
+        String fxml = usuario.getPermissao() ? "src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipal.fxml" : "src/main/java/br/com/project/sistemagerenciamentoestoque/view/telaPrincipalUser.fxml";
 
         try {
-            URL url = new File(fxmlFile).toURI().toURL();
+            URL url = new File(fxml).toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Parent root = loader.load();
 

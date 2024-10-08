@@ -79,39 +79,48 @@ public class loginController extends ReflectiveOperationException implements Ini
     }
 
     public void UserDialogEnviar() throws SQLException, IOException {
+            try {
+                if (!txtFieldSenhaUser.getText().isEmpty() && !txtFieldNomeUser.getText().isEmpty() && !txtFieldConfirmaSenha.getText().isEmpty()) {
+                    Usuario usuario = new Usuario();
 
-        try{
-            if(!txtFieldSenhaUser.getText().isEmpty() && !txtFieldNomeUser.getText().isEmpty() && !txtFieldConfirmaSenha.getText().isEmpty()){
-                Usuario usuario = new Usuario();
+                    if (btnUsuario.isSelected()) {
+                        usuario.setPermissao(false);
+                    } else {
+                        usuario.setPermissao(true);
+                    }
 
-                if(btnUsuario.isSelected()){
-                    usuario.setPermissao(false);
-                }else{
-                    usuario.setPermissao(true);
+                    if (txtFieldSenhaUser.getText().equals(txtFieldConfirmaSenha.getText())) {
+                        usuario.setNome(txtFieldNomeUser.getText());
+                        usuario.setSenha(txtFieldSenhaUser.getText());
+
+                        if (usuario.getPermissao().equals(true)) {
+                            usuario.setPermissao(true);
+                        } else {
+                            usuario.setPermissao(false);
+                        }
+
+                        boolean cadastroRealizado = loginDAO.inserirUser(usuario);
+
+                        if (cadastroRealizado) {
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setContentText("Cadastro realizado com sucesso!");
+                            alert.show();
+                            this.stagePrimario.close();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setContentText("Falha ao realizar o cadastro. Tente novamente.");
+                            alert.show();
+                        }
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("As senhas não são iguais, tente novamente!");
+                        alert.show();
+                    }
                 }
-
-                if(txtFieldSenhaUser.getText().equals(txtFieldConfirmaSenha.getText()) && usuario.getPermissao().equals(true)){
-                    usuario.setNome(txtFieldNomeUser.getText());
-                    usuario.setSenha(txtFieldSenhaUser.getText());
-                    usuario.setPermissao(true);
-                    loginDAO.inserirUser(usuario);
-                    this.stagePrimario.close();
-                }else if(txtFieldSenhaUser.getText().equals(txtFieldConfirmaSenha.getText()) && usuario.getPermissao().equals(false)){
-                    usuario.setNome(txtFieldNomeUser.getText());
-                    usuario.setSenha(txtFieldSenhaUser.getText());
-                    usuario.setPermissao(false);
-                    loginDAO.inserirUser(usuario);
-                    this.stagePrimario.close();
-                }else{
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("As senhas não são condizentes, tente novamente!");
-                    alert.show();
-                }
+            }catch (IllegalArgumentException e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(e.getMessage());
+                alert.show();
             }
-        }catch (IllegalArgumentException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(e.getMessage());
-            alert.show();
-        }
     }
 }

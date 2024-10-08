@@ -68,7 +68,7 @@ public class ProdutosDAO {
     }
 
     public boolean editarProduto(Produtos produto){
-        String sql = "UPDATE produtos SET descricao = ?, valor = ? WHERE id = ?";
+        String sql = "UPDATE produtos SET descricao = ?, valor = ? WHERE id_produto = ?";
         try{
             PreparedStatement smtm = conn.prepareStatement(sql);
             smtm.setString(1, produto.getDescricao());

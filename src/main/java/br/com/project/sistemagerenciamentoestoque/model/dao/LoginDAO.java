@@ -51,18 +51,23 @@ public class LoginDAO {
         }
 
         public boolean verificaUsuario(Usuario usuario) throws SQLException {
-            String sql = "SELECT * FROM usuario WHERE nome = (?) and senha = (?)";
+            String sql = "SELECT * FROM usuario WHERE nome = ? AND senha = ?";
 
-            try{
+            try {
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, usuario.getNome());
                 stmt.setString(2, usuario.getSenha());
+
                 ResultSet rs = stmt.executeQuery();
-                rs.next();
-            }catch(SQLException ex){
+                if (rs.next()) {
+                    usuario.setPermissao(rs.getBoolean("permissao"));
+                    return true;
+                }else{
+                    throw new IllegalArgumentException("Usuário ou senha inválidos.");
+                }
+            }catch(SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            return true;
         }
 
         public List<Usuario> listarUsuarios() throws SQLException{
