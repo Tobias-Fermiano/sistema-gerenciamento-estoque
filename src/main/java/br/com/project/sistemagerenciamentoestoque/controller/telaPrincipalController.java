@@ -20,7 +20,7 @@ public class telaPrincipalController implements Initializable {
     @FXML
     private Button btnPrinpalEstoque;
     @FXML
-    private Button btnPrincipalSobre;
+    private Button btnPrincpalRelatorio;
     @FXML
     private Button btnPrincipalSair;
 
@@ -72,6 +72,24 @@ public class telaPrincipalController implements Initializable {
         newStage.setScene(scene);
 
         estoqueController controller = loader.getController();
+        controller.setStage(newStage);
+
+        newStage.show();
+        stage.close();
+    }
+
+    @FXML
+    public void telaRelatorio() throws IOException {
+        URL url = new File("src/main/java/br/com/project/sistemagerenciamentoestoque/view/relatorio.fxml").toURI().toURL();
+        FXMLLoader loader = new FXMLLoader(url);
+        Parent root = loader.load();
+        scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setTitle("Relatório");
+        newStage.setResizable(false);
+        newStage.setScene(scene);
+
+        relatorioController controller = loader.getController();
         controller.setStage(newStage);
 
         newStage.show();

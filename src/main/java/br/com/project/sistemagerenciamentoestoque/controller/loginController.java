@@ -80,6 +80,7 @@ public class loginController extends ReflectiveOperationException implements Ini
 
     public void UserDialogEnviar() throws SQLException, IOException {
             try {
+                loginDAO.setConnection(connection);
                 if (!txtFieldSenhaUser.getText().isEmpty() && !txtFieldNomeUser.getText().isEmpty() && !txtFieldConfirmaSenha.getText().isEmpty()) {
                     Usuario usuario = new Usuario();
 
