@@ -71,7 +71,6 @@ public class loginController extends ReflectiveOperationException implements Ini
         newStage.show();
     }
 
-
     public void UserDialogCancelar(){
         if(stagePrimario != null){
             this.stagePrimario.close();

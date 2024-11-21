@@ -59,41 +59,27 @@
                <children>
                   <Pane layoutX="-31.0" layoutY="-15.0" prefHeight="182.0" prefWidth="339.0">
                      <children>
-                        <TextField fx:id="txtFieldUsuario" layoutX="7.0" layoutY="20.0" prefHeight="33.0" prefWidth="287.0" promptText="Digite o Usuário" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5;">
+                        <TextField fx:id="txtFieldUsuario" layoutX="17.0" layoutY="25.0" prefHeight="33.0" prefWidth="287.0" promptText="Digite o Usuário" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5;">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </TextField>
-                        <Label layoutX="7.0" layoutY="-5.0" style="-fx-font-weight: bold; -fx-text-fill: #333333;" text="Usuário">
+                        <Label layoutX="17.0" style="-fx-font-weight: bold; -fx-text-fill: #333333;" text="Usuário">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
 
-                        <PasswordField fx:id="txtFieldSenha" layoutX="7.0" layoutY="91.0" prefHeight="33.0" prefWidth="287.0" promptText="Digite a Senha" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5;">
+                        <PasswordField fx:id="txtFieldSenha" layoutX="17.0" layoutY="96.0" prefHeight="33.0" prefWidth="287.0" promptText="Digite a Senha" style="-fx-background-color: #f4f4f4; -fx-background-radius: 5;">
                            <font>
                               <Font name="System Italic" size="12.0" />
                            </font>
                         </PasswordField>
-                        <Label layoutX="7.0" layoutY="66.0" style="-fx-font-weight: bold; -fx-text-fill: #333333;" text="Senha">
+                        <Label layoutX="17.0" layoutY="71.0" style="-fx-font-weight: bold; -fx-text-fill: #333333;" text="Senha">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-
-                        <!-- Link de Cadastro -->
-                        <Label layoutX="59.0" layoutY="132.0" style="-fx-text-fill: #333333;" text="Não tem uma conta?">
-                           <font>
-                              <Font size="12.0" />
-                           </font>
-                        </Label>
-                        <Hyperlink layoutX="176.0" layoutY="129.0" onAction="#showCadastroUserDialog" style="-fx-text-fill: #5a9bd5; -fx-underline: true;" text="Cadastre-se">
-                           <style>
-                              .hover {
-                              -fx-text-fill: #1e90ff;
-                              }
-                           </style>
-                        </Hyperlink>
                      </children>
                   </Pane>
                </children>

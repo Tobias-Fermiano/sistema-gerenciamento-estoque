@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class telaPrincipalController implements Initializable {
@@ -94,6 +95,13 @@ public class telaPrincipalController implements Initializable {
 
         newStage.show();
         stage.close();
+    }
+
+    @FXML
+    public void showCadastroUserDialog() throws SQLException, IOException {
+        loginController cadastro = new loginController();
+        cadastro.setStage(stage);
+        cadastro.showCadastroUserDialog();
     }
 
 }

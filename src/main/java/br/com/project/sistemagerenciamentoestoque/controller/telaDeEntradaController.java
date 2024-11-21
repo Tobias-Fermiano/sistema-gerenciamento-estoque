@@ -56,13 +56,6 @@ public class telaDeEntradaController implements Initializable {
     }
 
     @FXML
-    public void showCadastroUserDialog() throws SQLException, IOException {
-        loginController cadastro = new loginController();
-        cadastro.setStage(stage);
-        cadastro.showCadastroUserDialog();
-    }
-
-    @FXML
     public void hyperlinkDesenvolvido() throws URISyntaxException, IOException {
         String[] urls = {
             "https://github.com/CassioVSouza",
